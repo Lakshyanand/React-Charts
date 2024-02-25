@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Charts from './Components/Charts';
+import Dropdown from './Components/DropDown';
+import Header from './Components/Header';
+import ChartContext from './Components/ChartContext';
+import ChartProvider from './Components/ChartProvider';
 
 function App() {
+
+  const [chart, setChart] = useState('bar_chart');
+
+  const setChartFunction = (value) => {
+    setChart(value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // <div className="App">
+    <ChartProvider>
+      <Header />
+      <Dropdown />
+      {/* <Dropdown updateChart={setChartFunction}/> */}
+      <Charts chart={chart}/>
+    </ChartProvider>
+    // </div>
   );
 }
 
